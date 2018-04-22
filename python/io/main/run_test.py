@@ -54,8 +54,10 @@ class RunTest:
                 except_value = self.data.get_expect_data(i)
                 if self.str_contain.is_contain(except_value,res):
                     print("测试通过")
+                    self.data.write_result(i,'passa')
                 else:
                     print("测试失败")
+                    self.data.write_result(i, 'faila')
                 return res
 
 if __name__ == '__main__':
