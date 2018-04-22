@@ -1,6 +1,6 @@
 #coding:utf-8
 import xlrd
-from copy import copy
+from xlutils.copy import copy
 
 
 class OperationExcel:
@@ -35,6 +35,7 @@ class OperationExcel:
 		row,col,value
 		'''
 		read_data = xlrd.open_workbook(self.file_name)
+		#copy这个方法可以在每次写入的时候都不把之前的值清空掉
 		write_data = copy(read_data)
 		sheet_data = write_data.get_sheet(0)
 		sheet_data.write(row,col,value)
