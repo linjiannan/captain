@@ -7,6 +7,7 @@ sys.setdefaultencoding('utf-8')
 sys.path.append("G:\git\captain\python\io")
 from base.runmethod import RunMethod
 from data.get_data import GetData
+from util.str_contain import str_contain
 # from util.common_util import CommonUtil
 # from data.dependent_data import DependdentData
 # from util.send_email import SendEmail
@@ -19,6 +20,7 @@ class RunTest:
         self.run_method = RunMethod()
         #获取数据对象
         self.data = GetData()
+        self.str_contain=str_contain()
         # self.com_util = CommonUtil()
         # self.send_mai = SendEmail()
 
@@ -48,6 +50,12 @@ class RunTest:
                 print request_data
                 print type(request_data)
                 res = self.run_method.run_main(method,url,request_data)
+                #获取预期的结果
+                except_value = self.data.get_expect_data(i)
+                if self.str_contain.is_contain(except_value,res):
+                    print("测试通过")
+                else:
+                    print("测试失败")
                 return res
 
 if __name__ == '__main__':
