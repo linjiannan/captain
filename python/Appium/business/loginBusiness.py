@@ -1,3 +1,5 @@
+import inspect
+
 from handle.loginHandle import  loginHandle
 class loginBusiness:
     def __init__(self,i):
@@ -6,6 +8,7 @@ class loginBusiness:
     def loginPass(self):
         self.loginBusiness.inputUsername("5000")
         self.loginBusiness.inputPassword("Yeastar123")
+        self.loginBusiness.get_ScreenShot(inspect.stack()[1][3])
     def loginError(self):
         self.loginBusiness.inputUsername("5001")
         self.loginBusiness.inputPassword("Yeastar12")
@@ -15,3 +18,4 @@ class loginBusiness:
             return True
         else:
             return False
+

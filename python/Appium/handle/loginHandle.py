@@ -10,8 +10,10 @@ class loginHandle:
         self.loginPage.get_login_password().send_keys(password)
     def clickLoginButton(self):
         self.loginPage.get_loginButton().click()
+    def get_ScreenShot(self,functionName):
+        self.loginPage.get_ScreenShot(functionName)
     def get_fail_toast(self,message):
-        element=self.loginPage.get_tost_element(message)
+        element=self.loginPage.get_fail_toast(message)
         if element:
             return True
         else:

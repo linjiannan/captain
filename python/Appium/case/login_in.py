@@ -1,8 +1,11 @@
+import inspect
 import sys
+
+import os
 
 sys.path.append("G:/git/captain/python/Appium")
 import unittest
-import HTMLTestRunner
+import HTMLTestRunnerCN
 import threading
 import multiprocessing
 from util.server import Server
@@ -10,7 +13,7 @@ import time
 from appium import webdriver
 from business.loginBusiness import loginBusiness
 from util.write_user_command import WriteUserCommand
-
+from util.conf import conf
 
 class ParameTestCase(unittest.TestCase):
     def __init__(self, methodName='runTest', parame=None):
@@ -53,7 +56,8 @@ def get_suite(i):
     # unittest.TextTestRunner().run(suite)
     html_file = "G:/git/captain/python/Appium/report/report" + str(i) + ".html"
     fp = open(html_file, "wb")
-    HTMLTestRunner.HTMLTestRunner(stream=fp).run(suite)
+    runner=HTMLTestRunnerCN.HTMLTestRunner(stream=fp, title=u'自动化测试报告', description=u'用例执行情况：',tester=u"captain")
+    runner.run(suite)
 
 
 def get_count():
@@ -63,9 +67,7 @@ def get_count():
 
 
 if __name__ == '__main__':
-    print("++++")
     appium_init()
-    # get_suite(0)
     threads = []
     for i in range(get_count()):
         t = multiprocessing.Process(target=get_suite, args=(i,))
