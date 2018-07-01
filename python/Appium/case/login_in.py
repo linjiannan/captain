@@ -3,6 +3,8 @@ import sys
 
 import os
 
+from business.IMBusiness import IMBusiness
+
 sys.path.append("G:/git/captain/python/Appium")
 import unittest
 import HTMLTestRunnerCN
@@ -24,16 +26,19 @@ class CaseTest(ParameTestCase):
     @classmethod
     def setUpClass(cls):
         print("setUpclass---->", parames)
-        cls.login_business = loginBusiness(parames)
+        #cls.login_business = loginBusiness(parames)
+        cls.IMBusiness=IMBusiness(parames)
 
     def setUp(self):
         print("this is setup\n")
 
     def test_01(self):
-        self.login_business.loginPass()
+        #self.login_business.loginPass()
+        self.IMBusiness.InIM()
     def test_02(self):
-        self.login_business.loginError()
-        self.assertTrue(True)
+        # self.login_business.loginError()
+        # self.assertTrue(True)
+        pass
 
     def tearDown(self):
         time.sleep(1)
@@ -67,8 +72,10 @@ def get_count():
 
 
 if __name__ == '__main__':
+    print("+++++")
     appium_init()
     threads = []
+    time.sleep(2)
     for i in range(get_count()):
         t = multiprocessing.Process(target=get_suite, args=(i,))
         threads.append(t)
