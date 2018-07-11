@@ -1,5 +1,8 @@
 import inspect
 
+import sys
+
+sys.path.append("G:/git/captain/python/Appium")
 from handle.loginHandle import  loginHandle
 class loginBusiness:
     def __init__(self,i):

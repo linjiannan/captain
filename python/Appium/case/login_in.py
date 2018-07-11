@@ -1,17 +1,14 @@
+#import HTMLTestRunnerCN
+import HTMLTestRunnerCN as Hs
 import inspect
 import sys
-
-import os
-
-from business.IMBusiness import IMBusiness
-
 sys.path.append("G:/git/captain/python/Appium")
 import unittest
-import HTMLTestRunnerCN
 import threading
 import multiprocessing
 from util.server import Server
 import time
+from business.IMBusiness import IMBusiness
 from appium import webdriver
 from business.loginBusiness import loginBusiness
 from util.write_user_command import WriteUserCommand
@@ -34,6 +31,7 @@ class CaseTest(ParameTestCase):
 
     def test_01(self):
         #self.login_business.loginPass()
+        #self.login_business.loginPage.conf.driver.get_screenshot_as_file('%s%s'%(png_file,img_name))
         self.IMBusiness.InIM()
     def test_02(self):
         # self.login_business.loginError()
@@ -42,6 +40,7 @@ class CaseTest(ParameTestCase):
 
     def tearDown(self):
         time.sleep(1)
+        self.IMBusiness.IMHandle.im.conf.driver.quit()
 
     @classmethod
     def tearDownClass(cls):
@@ -61,7 +60,8 @@ def get_suite(i):
     # unittest.TextTestRunner().run(suite)
     html_file = "G:/git/captain/python/Appium/report/report" + str(i) + ".html"
     fp = open(html_file, "wb")
-    runner=HTMLTestRunnerCN.HTMLTestRunner(stream=fp, title=u'自动化测试报告', description=u'用例执行情况：',tester=u"captain")
+    #runner=HTMLTestRunnerCN.HTMLTestRunner(stream=fp, title=u'自动化测试报告', description=u'用例执行情况：',tester=u"captain")
+    runner=Hs.HTMLTestRunner(stream=fp, title=u'自动化测试报告', description=u'用例执行情况：')
     runner.run(suite)
 
 
@@ -75,7 +75,7 @@ if __name__ == '__main__':
     print("+++++")
     appium_init()
     threads = []
-    time.sleep(2)
+    time.sleep(3)
     for i in range(get_count()):
         t = multiprocessing.Process(target=get_suite, args=(i,))
         threads.append(t)
