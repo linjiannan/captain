@@ -34,13 +34,12 @@ class CaseTest(ParameTestCase):
         #self.login_business.loginPage.conf.driver.get_screenshot_as_file('%s%s'%(png_file,img_name))
         self.IMBusiness.InIM()
     def test_02(self):
+        self.IMBusiness.IMHandle.im.conf.driver.start_activity('com.yeastar.linkus', '.business.main.MainActivity')
         # self.login_business.loginError()
         # self.assertTrue(True)
-        pass
-
+        self.IMBusiness.InIM()
     def tearDown(self):
         time.sleep(1)
-        self.IMBusiness.IMHandle.im.conf.driver.quit()
 
     @classmethod
     def tearDownClass(cls):
