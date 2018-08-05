@@ -44,11 +44,15 @@ class TestMethod(unittest.TestCase):
         print(type(res))
         print(res.text)
         #转化为json格式
+        print("######3")
+        print(res.status_code)
+
         res=res.json()
         print(type(res))
         print(res['errorCode'])
         #self.assertEqual(res['errorCode'], 1007, "测试失败")
         print("这是第二个case")
+
 
 
 
