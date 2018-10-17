@@ -2,6 +2,7 @@ package Case;
 
 import java.io.IOException;
 
+import org.testng.Reporter;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -16,8 +17,10 @@ import LinstenGetScreenShot.testListenTakeShot;
 
 @Test
 public void testlogin() throws IOException, InterruptedException{
+	Reporter.log("login case开始");
 	getUrl("https://www.imooc.com/");
 	maxWindow();
+	Reporter.log("窗口最大化后延时3秒");
 	Thread.sleep(3);
 	login();
 }

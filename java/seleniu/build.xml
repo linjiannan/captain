@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name= "seleniu" basedir= "." default="transform">
+<property name= "lib.dir" value="lib" />
+<path id= "test.classpath" >
+<fileset dir= "${lib.dir}" includes= "*.jar" />
+</path>
+<target name= "transform" >
+<xslt in= "G:/git/captain/java/seleniu/test-output/testng-results.xml" style= "G:/git/captain/java/seleniu/test-output/testng-results.xsl"
+out= "G:/git/captain/java/seleniu/Report/index1.html " >
+<param name= "testNgXslt.outputDir" expression= "G:/git/captain/java/seleniu/Report" />
+<classpath refid= "test.classpath" />
+</xslt>
+</target>
+</project>
+	
