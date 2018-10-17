@@ -11,7 +11,7 @@ public class loginPro extends loginHandle{
 
 	public void login() throws IOException, InterruptedException{
 		click_loginButton();
-		Thread.sleep(2);
+		Thread.sleep(2000);//https://www.cnblogs.com/klmei/p/7065592.html
 		sendkeys_username();
 		sendkeys_password();
 	}
