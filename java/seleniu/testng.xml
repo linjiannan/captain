@@ -6,4 +6,8 @@
       <class name="Case.login"/>
     </classes>
   </test> <!-- Test -->
+       <listeners>
+        <listener class-name="ExtentReporter.ExtentTestNGIReporterListener"></listener>
+        <!--<listener class-name="ExtentReporter.ExtentTestNGITestListener"></listener>-->
+    </listeners>
 </suite> <!-- Suite -->
