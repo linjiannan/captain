@@ -15,6 +15,8 @@ import util.Pro;
 
 public class DriverBase {
 public WebDriver driver;
+public int width;
+public int heigth;
 
 public DriverBase(String browser) {
 	SelectDriver selectdriver=new SelectDriver();
@@ -47,6 +49,7 @@ public void getUrl(String url) {
 public void click(WebElement e){
 	e.click();
 }
+//封装
 public  By bystr(String key1) throws IOException {
 	  Pro prop=new Pro("src/main/java/conf/config.properties");
 	  String key_value=prop.getPro(key1);
@@ -58,8 +61,17 @@ public  By bystr(String key1) throws IOException {
 	  else if(key.equals("name")) {
 		  return By.name(value);
 	  }
-	  else if(key.equals("class")) {
+	  else if(key.equals("className")) {
 		  return By.className(value);
+	  }
+	  else if(key.equals("tagName")){
+		  return By.tagName(value);
+	  }
+	  else if(key.equals("linkTest")){
+		  return By.linkText(value);
+	  }
+	  else if(key.equals("partialLinkText")){
+		  return By.partialLinkText(value);  
 	  }
 	  else {
 		  return By.xpath(value);
@@ -99,5 +111,31 @@ public void sendkeyss(WebElement a,String b) throws IOException {
 		System.out.println("配置文件未找到");
 	}
 }
-
+//获取当前屏幕的大小
+public void test(){
+	width=driver.manage().window().getSize().width;
+	heigth=driver.manage().window().getSize().height;
+}
+//刷新网页
+public void refresh(){
+	driver.navigate().refresh();
+}
+//前进到前一步操作
+public void forward(){
+	driver.navigate().forward();
+}
+//后退到上一步操作
+public void back(){
+	driver.navigate().back();
+}
+//关闭窗口
+public void quit(){
+	driver.quit();
+}
+public String getAttribute(WebElement el,String value){
+	return el.getAttribute(value);
+}
+public String getText(WebElement el){
+	return el.getText();
+}
 }
