@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class SelectDriver {
 public WebDriver drivername(String browser) {
@@ -13,6 +14,8 @@ public WebDriver drivername(String browser) {
 		return driver;
 	}
 	else if(browser.equalsIgnoreCase("chrome")) {
+		DesiredCapabilities sCaps = new DesiredCapabilities();
+		sCaps.setJavascriptEnabled(true);
 		System.setProperty("webdriver.chrome.driver","E:\\chrome\\chromedriver.exe");
 		WebDriver driver=new ChromeDriver();
 		return driver;

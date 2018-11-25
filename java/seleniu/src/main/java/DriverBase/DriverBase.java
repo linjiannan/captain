@@ -2,6 +2,7 @@ package DriverBase;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.channels.Selector;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -10,6 +11,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
 import util.Pro;
 
@@ -77,6 +79,7 @@ public  By bystr(String key1) throws IOException {
 		  return By.xpath(value);
 	  }
 }
+//截图
 public void jietu() {
 	//获取当前系统的时间，并转换为字符串
 	Long date=System.currentTimeMillis();
@@ -96,7 +99,7 @@ public void jietu() {
 		e.printStackTrace();
 	}
 }
-
+//封装sendkeys
 public void sendkeys(WebElement a,String b) throws IOException {
 	a.sendKeys(b);
 	}
@@ -132,10 +135,61 @@ public void back(){
 public void quit(){
 	driver.quit();
 }
+//获取属性
 public String getAttribute(WebElement el,String value){
 	return el.getAttribute(value);
 }
+//获取文本信息
 public String getText(WebElement el){
 	return el.getText();
+}
+//清空文本框
+public void clear(WebElement el){
+	el.clear();
+}
+//下拉框选择
+public void selectBox(WebElement el,int i){
+	Select downlist=new Select(el);
+	downlist.selectByIndex(i);
+	
+}
+//鼠标左点击操作
+public  void moseAction_left(WebElement el){
+	Actions action=new Actions(driver);
+	action.click(el).perform();
+}
+//鼠标右点击操作
+public  void moseAction_right(WebElement el){
+	Actions action=new Actions(driver);
+	action.contextClick(el).perform();
+}
+//鼠标双击操作
+public  void moseAction_double(WebElement el){
+	Actions action=new Actions(driver);
+	action.doubleClick(el).perform();
+}
+//鼠标悬停
+public  void moseAction_wait(WebElement el){
+	Actions action=new Actions(driver);
+	action.moveToElement(el).perform();
+}
+//切换窗体iframe
+public void moveToIframe(WebElement el){
+	driver.switchTo().frame(el);
+}
+//切换框体alert
+public void moveToAlert(){
+	driver.switchTo().alert();
+}
+//获取所有的handle，切换handle
+public void getHandles(){
+	//窗口切换，获取窗口句柄
+	String winHandleBefore = driver.getWindowHandle();
+	for(String winHandle : driver.getWindowHandles()){
+	if (winHandle.equals(winHandleBefore)){
+	continue;
+	}
+	driver.switchTo().window(winHandle);
+}
 }
 }
